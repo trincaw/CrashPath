@@ -59,14 +59,7 @@ class Goblin extends SimpleEnemy with ObjectCollision {
   void die() {
     gameRef.add(
       AnimatedObjectOnce(
-        animation: SpriteAnimation.load(
-          'goblin/smoke_explosin.png',
-          SpriteAnimationData.sequenced(
-            amount: 6,
-            stepTime: 0.1,
-            textureSize: Vector2(16, 16),
-          ),
-        ),
+        animation: GoblinSpriteSheet.gobinExpolosion(),
         position: position,
         size: Vector2(32, 32),
       ),

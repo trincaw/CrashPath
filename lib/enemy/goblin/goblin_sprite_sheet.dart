@@ -46,7 +46,14 @@ class GoblinSpriteSheet {
           textureSize: Vector2(16, 16),
         ),
       );
-
+  static Future<SpriteAnimation> gobinExpolosion() => SpriteAnimation.load(
+        'goblin/smoke_explosion.png',
+        SpriteAnimationData.sequenced(
+          amount: 6,
+          stepTime: 0.2,
+          textureSize: Vector2(16, 16),
+        ),
+      );
   static SimpleDirectionAnimation goblinAnimations() =>
       SimpleDirectionAnimation(
         idleLeft: SpriteAnimation.load(

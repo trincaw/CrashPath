@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 
 import 'dialogs/dialogs.dart';
 import 'enemy/goblin/goblin.dart';
+import 'interface/knight_interface.dart';
 
 class Game extends StatefulWidget {
   static bool useJoystick = true;
@@ -88,6 +89,7 @@ class _GameState extends State<Game> implements GameListener {
             'goblin': (p) => Goblin(p.position, mapTileSize),
           },
         ),
+        interface: KnightInterface(),
         lightingColorGame: Colors.black.withOpacity(0.6),
         background: BackgroundColorGame(Colors.grey[900]!),
         progress: Container(
