@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'dialogs/dialogs.dart';
+import 'enemy/goblin/goblin.dart';
 
 class Game extends StatefulWidget {
   static bool useJoystick = true;
@@ -83,7 +84,9 @@ class _GameState extends State<Game> implements GameListener {
         map: WorldMapByTiled(
           'tiled/map.tmj',
           forceTileSize: Vector2(mapTileSize, mapTileSize),
-          objectsBuilder: {},
+          objectsBuilder: {
+            'goblin': (p) => Goblin(p.position, mapTileSize),
+          },
         ),
         lightingColorGame: Colors.black.withOpacity(0.6),
         background: BackgroundColorGame(Colors.grey[900]!),

@@ -157,7 +157,7 @@ class Knight extends SimplePlayer with Lighting, ObjectCollision {
     super.receiveDamage(attacker, damage, id);
   }
 
-  void _showEmote({String emote = 'emote/emote_exclamacao.png'}) {
+  void _showEmote({String emote = 'logo.png'}) {
     gameRef.add(
       AnimatedFollowerObject(
         animation: SpriteAnimation.load(
