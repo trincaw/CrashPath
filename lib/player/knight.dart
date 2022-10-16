@@ -7,10 +7,11 @@ import 'package:flutter/services.dart';
 
 class Knight extends SimplePlayer with Lighting, ObjectCollision {
   double attack = 25;
-  double stamina = 100;
+  double stamina = 200;
   double mapTileSize = 0;
   double initSpeed = 0;
   async.Timer? _timerStamina;
+  async.Timer? _timerBasicCoolDown;
   bool containKey = false;
   bool showObserveEnemy = false;
 
@@ -23,7 +24,7 @@ class Knight extends SimplePlayer with Lighting, ObjectCollision {
           animation: PlayerSpriteSheet.playerAnimations(),
           size: Vector2.all(mapTileSize),
           position: position,
-          life: 2000,
+          life: 9999,
           speed: mapTileSize / 0.25,
         ) {
     initSpeed = mapTileSize / 0.25;
@@ -89,12 +90,19 @@ class Knight extends SimplePlayer with Lighting, ObjectCollision {
     if (stamina < 15) {
       return;
     }
-    if (!checkInterval('playerAttackMelee', 30, dtUpdate)) return; //antispam
+    if (_timerBasicCoolDown == null) {
+      //basic attack cd
+      _timerBasicCoolDown = async.Timer(const Duration(milliseconds: 400), () {
+        _timerBasicCoolDown = null;
+      });
+    } else {
+      return;
+    }
     decrementStamina(15);
     simpleAttackMelee(
       damage: attack,
       animationRight: PlayerSpriteSheet.attackEffectRight(),
-      size: Vector2.all(mapTileSize),
+      size: Vector2.all(mapTileSize * 2),
     );
   }
 
@@ -130,7 +138,7 @@ class Knight extends SimplePlayer with Lighting, ObjectCollision {
       return;
     }
 
-    stamina += 2;
+    stamina += 200;
     if (stamina > 100) {
       stamina = 100;
     }

@@ -29,7 +29,7 @@ class _MenuState extends State<Menu> {
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               const Text(
-                "Darkness Dungeon",
+                "Crash path",
                 style: TextStyle(
                     color: Colors.white, fontFamily: 'Normal', fontSize: 30.0),
               ),
@@ -55,7 +55,7 @@ class _MenuState extends State<Menu> {
                     ),
                   ),
                   onPressed: () {
-                    Game.useJoystick = true; //to do
+                    Game.useJoystick = false; //to do
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => Game()),
