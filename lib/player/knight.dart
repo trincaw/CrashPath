@@ -12,6 +12,7 @@ class Knight extends SimplePlayer with Lighting, ObjectCollision {
   double initSpeed = 0;
   async.Timer? _timerStamina;
   async.Timer? _timerBasicCoolDown;
+  async.Timer? _timerSkillCoolDown;
   bool containKey = false;
   bool showObserveEnemy = false;
 
@@ -67,6 +68,15 @@ class Knight extends SimplePlayer with Lighting, ObjectCollision {
         event.event == ActionEvent.DOWN) {
       actionAttack();
     }
+
+    if (event.id == LogicalKeyboardKey.keyZ.keyId &&
+        event.event == ActionEvent.DOWN) {
+      Skill1();
+    }
+
+    if (event.id == 1 && event.event == ActionEvent.DOWN) {
+      Skill1();
+    }
     super.joystickAction(event);
   }
 
@@ -102,8 +112,28 @@ class Knight extends SimplePlayer with Lighting, ObjectCollision {
     simpleAttackMelee(
       damage: attack,
       animationRight: PlayerSpriteSheet.attackEffectRight(),
-      size: Vector2.all(mapTileSize * 2),
+      size: Vector2.all(mapTileSize) * 1.5,
     );
+  }
+
+  void Skill1() {
+    if (_timerSkillCoolDown == null) {
+      //basic attack cd
+      _timerSkillCoolDown = async.Timer(const Duration(milliseconds: 3000), () {
+        _timerSkillCoolDown = null;
+      });
+    } else {
+      return;
+    }
+    for (var dir in Direction.values) {
+      simpleAttackMeleeByDirection(
+          attackFrom: AttackFromEnum.PLAYER_OR_ALLY,
+          animationRight: PlayerSpriteSheet.skill1EffectRight(),
+          damage: attack / 8,
+          direction: dir,
+          size: Vector2.all(mapTileSize) * 3,
+          withPush: true);
+    }
   }
 
   @override

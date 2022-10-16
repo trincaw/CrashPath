@@ -35,6 +35,14 @@ class PlayerSpriteSheet {
           textureSize: Vector2(16, 16),
         ),
       );
+  static Future<SpriteAnimation> skill1EffectRight() => SpriteAnimation.load(
+        'player/atack_effect_right.png',
+        SpriteAnimationData.sequenced(
+          amount: 6,
+          stepTime: 0.2,
+          textureSize: Vector2(16, 16),
+        ),
+      );
   static Future<SpriteAnimation> attackEffectTop() => SpriteAnimation.load(
         'player/atack_effect_top.png',
         SpriteAnimationData.sequenced(
