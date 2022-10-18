@@ -47,7 +47,7 @@ class _MenuState extends State<Menu> {
                     minimumSize: const Size(100, 40),
                   ),
                   child: const Text(
-                    'Play',
+                    'Play keyboard',
                     style: TextStyle(
                       color: Colors.white,
                       fontFamily: 'Normal',
@@ -56,6 +56,36 @@ class _MenuState extends State<Menu> {
                   ),
                   onPressed: () {
                     Game.useJoystick = false; //to do
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Game()),
+                    );
+                  },
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              SizedBox(
+                width: 150,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    elevation: 3,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                    minimumSize: const Size(100, 40),
+                  ),
+                  child: const Text(
+                    'Play joystick',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontFamily: 'Normal',
+                      fontSize: 17.0,
+                    ),
+                  ),
+                  onPressed: () {
+                    Game.useJoystick = true; //to do
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => Game()),
